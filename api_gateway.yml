@@ -1,0 +1,29 @@
+jwt:
+  secretKey: "a-string-secret-at-least-256-bits-long"
+
+  #api gate config
+  cloud:
+    gateway:
+      routes:
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/orders/**
+          filters:
+            - name: LoggingOrdersFilter
+            - name: Authentication
+
+
+        - id: inventory-service
+          uri: lb://INVENTORY-SERVICE
+          predicates:
+            - Path=/inventory/**
+          filters:
+            - name: Authentication
+            - name: LoggingOrdersFilter
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
