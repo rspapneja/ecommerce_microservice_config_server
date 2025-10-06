@@ -5,4 +5,4 @@ management:
         include: "*"
 #Zipkin Config        
 management.tracing.sampling.probability: 1.0
-spring.zipkin.baseurl:http://loclhost:9411
+spring.zipkin.baseurl: http://loclhost:9411
